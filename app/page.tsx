@@ -4,11 +4,10 @@ import { SupabaseStatus } from "@/components/SupabaseStatus";
 export default async function HomePage() {
   const supabase = await createClient();
 
-  // Health-check: simple query that works even with empty database
-  const { error } = await supabase.from("_health_check").select("*").limit(1);
+  // Health-check: getSession hits the auth API without requiring any table
+  const { error } = await supabase.auth.getSession();
 
-  // A "relation does not exist" error still means the connection is alive
-  const isConnected = !error || error.code === "42P01";
+  const isConnected = !error;
 
   const env = process.env.NEXT_PUBLIC_SUPABASE_URL
     ? new URL(process.env.NEXT_PUBLIC_SUPABASE_URL).hostname
