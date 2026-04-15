@@ -22,6 +22,7 @@ function log(level: LogLevel, message: string, data?: unknown) {
 
   if (process.env.NODE_ENV === "production") {
     // In production: output JSON for log aggregators
+    // eslint-disable-next-line no-console
     console[level](JSON.stringify(entry));
   } else {
     // In development: human-readable output
