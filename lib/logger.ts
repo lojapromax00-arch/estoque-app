@@ -26,10 +26,12 @@ function log(level: LogLevel, message: string, data?: unknown) {
   } else {
     // In development: human-readable output
     const prefix = `[${entry.timestamp}] [${level.toUpperCase()}]`;
+    const logFn =
+      level === "error" ? console.error : level === "warn" ? console.warn : console.info;
     if (data !== undefined) {
-      console[level](prefix, message, data);
+      logFn(prefix, message, data);
     } else {
-      console[level](prefix, message);
+      logFn(prefix, message);
     }
   }
 }
