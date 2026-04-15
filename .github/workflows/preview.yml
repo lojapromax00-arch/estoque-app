@@ -1,0 +1,17 @@
+name: Preview Deployment
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  # Vercel handles preview deploys automatically via Git integration.
+  # This workflow adds a status check so PRs show the preview URL clearly.
+  preview-status:
+    name: Preview Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Awaiting Vercel preview
+        run: |
+          echo "Vercel will create a preview deployment automatically."
+          echo "Check the PR comments for the preview URL."
