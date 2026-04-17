@@ -25,4 +25,8 @@ export const env = {
 export const serverEnv = {
   supabaseServiceRoleKey: () => requireEnv("SUPABASE_SERVICE_ROLE_KEY"),
   supabaseProjectId: () => requireEnv("SUPABASE_PROJECT_ID"),
+  trayApiUrl: () => process.env.TRAY_API_URL ?? "",
+  trayApiKey: () => process.env.TRAY_API_KEY ?? "",
+  trayStoreId: () => process.env.TRAY_STORE_ID ?? "",
+  storageBucket: () => process.env.SUPABASE_STORAGE_BUCKET ?? "importacoes",
 } as const;
